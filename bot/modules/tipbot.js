@@ -245,7 +245,7 @@ function doDeposit(message, tipper) {
  */
 function getFiatToPwrEquivalent(amount, fiatCurrencySymbol) {
     const BASE_API_URL = "https://api.coinmarketcap.com/v1/ticker";
-    let API_URL = BASE_API_URL + "/pwrcash/?convert=" + fiatCurrencySymbol;
+    let API_URL = BASE_API_URL + "/powercoin/?convert=" + fiatCurrencySymbol;
 
     // TODO: rework this sync request!
     let response = syncRequest("GET", API_URL);
