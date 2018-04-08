@@ -1,9 +1,9 @@
-# Bot for ZEN's Discord
+# Bot for PWRcoin's Discord
 (This README will be updated along with bot updates)
 
 Features:
 
-- Tipbot for ZEN. Responds to `!tip`.
+- Tipbot for PWRcoin. Responds to `!tip`.
 - Dynamic plugin loading with permission support.
 
 
@@ -12,7 +12,6 @@ Features:
 - node > 8.0.0
 - npm > 0.12.x
 - mongod > 3.6.0
-- zen > 2.0.11
 
 
 ## Installation
