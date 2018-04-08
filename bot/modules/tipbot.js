@@ -25,7 +25,7 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 exports.commands = [
-    "tip", "help"
+    "tip"
 ];
 
 exports.tip = {
