@@ -113,7 +113,7 @@ function doHelp(message) {
         + "**!tip help** : display this message.\n\n"
         + "**!tip deposit** : get an address to top up your balance. `Warning:` Mining directly into your `tip-bot-address` is prohibited (You won't be able to use these PWRs)! And no support for retrieving these PWRs will be provided!\n\n"
         + "**!tip balance** : get your balance.\n\n"
-        + "**!tip withdraw <amount> <address>** : withdraw <amount> PWRs from your balance to your `T` <address> (Only `T` addresses are supported!).\n\n"
+        + "**!tip withdraw <amount> <address>** : withdraw <amount> PWRs from your balance to your <address>.\n\n"
         + "**!tip luck <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *randomly* (one tip is bigger, you can win jackpot) between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 20 people. Your packet will be active for next 20 minutes, then can be overwritten. Maximum tip has to be ≤ 1 PWR.\n\n"
         + "**!tip each <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *equally* between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 20 people. Your packet will be active for next 20 minutes, then can be overwritten. Maximum tip has to be ≤ 1 PWR.\n\n"
         + "**!tip <@user> <amount> [message]** : tip <@user> <amount> PWRs.\n\n"
@@ -375,9 +375,9 @@ function doWithdraw(message, tipper, words) {
         //}
 
         // only addresses are supported!
-        if (destinationAddress.length !== 34 || destinationAddress.toLowerCase().substring(0, 2)) {
-            return message.reply("this does not appear to be a valid address");
-        }
+        //if (destinationAddress.length !== 34 || destinationAddress.toLowerCase().substring(0, 2)) {
+        //    return message.reply("this does not appear to be a valid address");
+        //}
 
         // power.cmd("z_sendmany", tipper.address, '[{"amount": ' + spent.toString() + ', "address": "' + destinationAddress + '"}]',
         power.cmd("sendtoaddress", destinationAddress, amount, "", "", true,
