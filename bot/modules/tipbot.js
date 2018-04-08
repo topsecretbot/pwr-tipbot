@@ -3,7 +3,7 @@
 const config = require("config");
 const config_bot = config.get("bot");
 const bitcoin = require("bitcoin");
-const pwr = new bitcoin.Client(config.get("pwr"));
+const power = new bitcoin.Client(config.get("power"));
 const mongoose = require("mongoose");
 const syncRequest = require("sync-request");
 
@@ -146,7 +146,7 @@ function getUser(id, cb) {
             cb(null, doc);
         } else {
             // New User
-            pwr.getNewAddress(function (err, address) {
+            power.getNewAddress(function (err, address) {
                 if (err) {
                     return cb(err, null);
                 }
@@ -174,7 +174,7 @@ function getBalance(tipper, cb) {
     }
 
     // balance = total deposit amount + total received - total spent
-    pwr.cmd("getreceivedbyaddress", tipper.address, function (err, amount) {
+    power.cmd("getreceivedbyaddress", tipper.address, function (err, amount) {
         if (err) {
             return cb(err, null);
         }
@@ -217,7 +217,7 @@ function doDeposit(message, tipper) {
         message.reply("Your deposit address is: " + tipper.address);
     } else {
         // tipper has no deposit address yet, generate a new one
-        pwr.getNewAddress(function (err, address) {
+        power.getNewAddress(function (err, address) {
             if (err) {
                 return message.reply("Error getting deposit address!");
             }
@@ -379,8 +379,8 @@ function doWithdraw(message, tipper, words) {
             return message.reply("this does not appear to be a valid address");
         }
 
-        // pwr.cmd("z_sendmany", tipper.address, '[{"amount": ' + spent.toString() + ', "address": "' + destinationAddress + '"}]',
-        pwr.cmd("sendtoaddress", destinationAddress, amount, "", "", true,
+        // power.cmd("z_sendmany", tipper.address, '[{"amount": ' + spent.toString() + ', "address": "' + destinationAddress + '"}]',
+        power.cmd("sendtoaddress", destinationAddress, amount, "", "", true,
             function (err, txId) {
                 if (err) {
                     message.reply(err.message);
