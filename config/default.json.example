@@ -8,7 +8,7 @@
   },
   "power": {
     "host": "localhost",
-    "port": 8666,
+    "port": 4502,
     "user": "example",
     "pass": "example",
     "timeout": 30000
