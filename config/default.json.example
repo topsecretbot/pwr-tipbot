@@ -6,7 +6,7 @@
     "debug": true,
     "testnet": true
   },
-  "zen": {
+  "power": {
     "host": "localhost",
     "port": 8666,
     "user": "example",
