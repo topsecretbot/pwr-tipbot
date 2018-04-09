@@ -369,15 +369,16 @@ function doWithdraw(message, tipper, words) {
 
         const destinationAddress = words[3];
 
-        //let prefix = "zn";
+        let prefix1 = "5";
+        let prefix2 = "6";
         //if (config_bot.testnet) {
         //    prefix = "zt";
         //}
 
-        // only addresses are supported!
-        //if (destinationAddress.length !== 34 || destinationAddress.toLowerCase().substring(0, 2)) {
-        //    return message.reply("this does not appear to be a valid address");
-        //}
+       //  only 5 or 6 addresses are supported!
+        if ((destinationAddress.length !== 34 || destinationAddress.toLowerCase().substring(0, 2) !== prefix1) || (destinationAddress.length !== 34 || destinationAddress.toLowerCase().substring(0, 2) !== prefix2) ) {
+            return message.reply("this does not appear to be a valid address");
+        }
 
         // power.cmd("z_sendmany", tipper.address, '[{"amount": ' + spent.toString() + ', "address": "' + destinationAddress + '"}]',
         power.cmd("sendtoaddress", destinationAddress, amount, "", "", true,
