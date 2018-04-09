@@ -370,7 +370,7 @@ function doWithdraw(message, tipper, words) {
         const destinationAddress = words[3];
 
        //  only 5 or 6 addresses are supported!
-        if (destinationAddress.charAt(0) !== 5 || destinationAddress.charAt(0) !== 6 ) {
+        if ((destinationAddress.charAt(0) !== '5') || (destinationAddress.charAt(0) !== '6') ) {
             return message.reply("this does not appear to be a valid address");
         }
 
