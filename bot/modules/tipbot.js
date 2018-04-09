@@ -35,7 +35,7 @@ exports.tip = {
     + "**!tip help** : display this message.\n"
     + "**!tip deposit** : get an address to top up your balance.\n"
     + "**!tip balance** : get your balance.\n"
-    + "**!tip withdraw <amount> <address>** : withdraw <amount> PWRs from your"
+    + "**!tip withdraw <address> <amount>** : withdraw <amount> PWRs from your"
     + " balance to your <address>.\n"
     + "**!tip <@user> <amount> [message]** : tip <@user> <amount> PWRs (MAX tip is 10000000)"
     + " and leave an optional [message].\n"
@@ -113,7 +113,7 @@ function doHelp(message) {
         + "**!tip help** : display this message.\n\n"
         + "**!tip deposit** : get an address to top up your balance. `Warning:` Mining directly into your `tip-bot-address` is prohibited (You won't be able to use these PWRs)! And no support for retrieving these PWRs will be provided!\n\n"
         + "**!tip balance** : get your balance.\n\n"
-        + "**!tip withdraw <amount> <address>** : withdraw <amount> PWRs from your balance to your <address>.\n\n"
+        + "**!tip withdraw <address> <amount>** : withdraw <amount> PWRs from your balance to your <address>.\n\n"
         + "**!tip luck <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *randomly* (one tip is bigger, you can win jackpot) between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 20 people. Your packet will be active for next 20 minutes, then can be overwritten. Maximum tip has to be ≤ 10000000 PWR.\n\n"
         + "**!tip each <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *equally* between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 20 people. Your packet will be active for next 20 minutes, then can be overwritten. Maximum tip has to be ≤ 1 PWR.\n\n"
         + "**!tip <@user> <amount> [message]** : tip <@user> <amount> PWRs.\n\n"
@@ -328,7 +328,7 @@ function getValidatedAmount(amount, balance) {
 }
 
 /**
- * Validate amount if max is lower than maxTipPwrAmount = 1
+ * Validate amount if max is lower than maxTipPwrAmount = 10000000
  * * @param amount
  */
 function getValidatedMaxAmount(amount) {
