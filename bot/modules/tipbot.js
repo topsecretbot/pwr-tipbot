@@ -376,7 +376,7 @@ function doWithdraw(message, tipper, words) {
         //}
 
        //  only 5 or 6 addresses are supported!
-        if ((destinationAddress.toLowerCase().substring(0, 2) !== prefix1) || destinationAddress.toLowerCase().substring(0, 2) !== prefix2) ) {
+        if (destinationAddress.toLowerCase().substring(0, 2) !== prefix1 || destinationAddress.toLowerCase().substring(0, 2) !== prefix2 ) {
             return message.reply("this does not appear to be a valid address");
         }
 
