@@ -106,7 +106,7 @@ const allowedFiatCurrencySymbols = ["USD", "EUR", "RUB", "JPY", "GBP", "AUD", "B
  */
 function doHelp(message) {
     if (message.channel.type !== "dm") {
-        return message.reply("send me this command in direct message!");
+        return message.reply("send me this command in direct message!").then(message => message.delete(10000);
     }
 
     message.author.send(
@@ -193,7 +193,7 @@ function getBalance(tipper, cb) {
  */
 function doBalance(message, tipper) {
     if (message.channel.type !== "dm") {
-        return message.reply("send me this command in direct message!");
+        return message.reply("send me this command in direct message!").then(message => message.delete(10000);
     }
 
     getBalance(tipper, function (err, balance) {
@@ -211,7 +211,7 @@ function doBalance(message, tipper) {
  */
 function doDeposit(message, tipper) {
     if (message.channel.type !== "dm") {
-        return message.reply("send me this command in direct message!");
+        return message.reply("send me this command in direct message!").then(message => message.delete(10000);
     }
 
     if (tipper.address) {
@@ -349,7 +349,7 @@ function getValidatedMaxAmount(amount) {
  */
 function doWithdraw(message, tipper, words) {
     if (message.channel.type !== "dm") {
-        return message.reply("send me this command in direct message!");
+        return message.reply("send me this command in direct message!").then(message => message.delete(10000);
     }
 
     //  wrong command syntax
@@ -427,7 +427,7 @@ function doOpenTip(message, receiver, words, bot) {
 
     let idx = retreiveChannelTipObjIdx(tipAllChannels, message.channel.id);
     if (idx === null) {
-        return message.reply("sorry here isn't any tip for `open`");
+        return message.reply("sorry here isn't any tip for `open`").then(message => message.delete(10000);
     }
     if (config_bot.debug) {
         console.log("open idx", idx);
@@ -468,7 +468,7 @@ function doOpenTip(message, receiver, words, bot) {
 
         // prevent user from opening your own tip
         if (tipper.discordID === message.author.id) {
-            return message.reply("you can't `open` your own tip ...");
+            return message.reply("you can't `open` your own tip ...").then(message => message.delete(10000);
         }
 
         getUser(receiver.id, function (err, rec) {
@@ -482,7 +482,7 @@ function doOpenTip(message, receiver, words, bot) {
 
             for (let i = 0; i < tipAllChannels[idx].used_user.length; i++) {
                 if (tipAllChannels[idx].used_user[i].id === message.author.id) {
-                    return message.reply("you can't `open` this for the second time ...");
+                    return message.reply("you can't `open` this for the second time ...").then(message => message.delete(10000);
                 }
             }
 
