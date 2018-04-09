@@ -38,7 +38,7 @@ exports.tip = {
     + "**!tip balance** : get your balance.\n"
     + "**!tip withdraw <amount> <address>** : withdraw <amount> PWRs from your"
     + " balance to your <address>.\n"
-    + "**!tip <@user> <amount> [message]** : tip <@user> <amount> PWRs (MAX tip is 10000000)"
+    + "**!tip <@user> <amount> [message]** : tip <@user> <amount> PWRs (MAX tip is 50000000)"
     + " and leave an optional [message].\n"
     + "**!tip each <amount> <n> [message]** : drop a packet in a channel, the"
     + " <amount> is divided *equally* between the <n> first people to open"
@@ -117,7 +117,7 @@ function doHelp(message) {
         + "**!tip balance** : get your balance.\n\n"
         + "**!tip withdraw <amount> <address>** : withdraw <amount> PWRs from your balance to your <address>.\n\n"
         + "**!tip luck <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *randomly* (one tip is bigger, you can win jackpot) between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 1000 people. Your packet will be active for next 5 minutes, then can be overwritten. Maximum tip has to be ≤ 10000000 PWR.\n\n"
-        + "**!tip each <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *equally* between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 1000 people. Your packet will be active for next 5 minutes, then can be overwritten. Maximum tip has to be ≤ 10000000 PWR.\n\n"
+        + "**!tip each <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *equally* between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 1000 people. Your packet will be active for next 5 minutes, then can be overwritten. Maximum tip has to be ≤ 50000000 PWR.\n\n"
         + "**!tip <@user> <amount> [message]** : tip <@user> <amount> PWRs.\n\n"
         //+ "**!tip <@user> random [message]** : tip <@user> random PWRs where random is <0.0, 0.1)\n\n"
       //  + "**!tip <@user> <amount><fiat_currency_ticker> [message]** : tip <@user> PWRs in fiat equivalent. Example: **!tip @freakcoder 10000usd**. You can use <fiat_currency_ticker> with every command. Where <fiat_currency_ticker> can be: USD, EUR, RUB, JPY, GBP, AUD, BRL, CAD, CHF, CLP, CNY, CZK, DKK, HKD, IDR, ILS, INR, KRW, MXN, MYR, NOK, NZD, PHP, PKR, PLN, SEK, SGD, THB, TRY, TWD, ZAR\n"
@@ -323,8 +323,8 @@ function getValidatedAmount(amount, balance) {
     }
 
     // Invalid amount
-    if (amount > 10000000) {
-        return "Over10M"
+    if (amount > 50000000) {
+        return "Over50M"
     }
     return null
 }
@@ -334,7 +334,7 @@ function getValidatedAmount(amount, balance) {
  * * @param amount
  */
 function getValidatedMaxAmount(amount) {
-    let maxTipPwrAmount = 10000000;
+    let maxTipPwrAmount = 50000000;
     if (amount <= maxTipPwrAmount) {
         return amount
     } else {
@@ -365,8 +365,8 @@ function doWithdraw(message, tipper, words) {
         let amount = getValidatedAmount(words[2], balance);
         if (amount === null) {
             return message.reply("I don't know how to withdraw that many PWRs!");
-        } else if (amount === "Over10M") {
-            return message.reply("what? Over 10000000!");
+        } else if (amount === "Over50M") {
+            return message.reply("what? Over 50000000!");
         }
 
         const destinationAddress = words[3];
@@ -606,8 +606,8 @@ function createTipLuck(message, tipper, words) {
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
             return message.reply("I don't know how to tip that many PWRs!");
-        } else if (amountToValidate === "Over10M") {
-            return message.reply("what? Over 10000000!");
+        } else if (amountToValidate === "Over50M") {
+            return message.reply("what? Over 50000000!");
         }
 
         let amount = parseFloat(amountToValidate).toFixed(8);
@@ -693,8 +693,8 @@ function createTipEach(message, tipper, words) {
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
             return message.reply("I don't know how to tip that many PWRs!");
-        } else if (amountToValidate === "Over10M") {
-            return message.reply("what? Over 10000000!");
+        } else if (amountToValidate === "Over50M") {
+            return message.reply("what? Over 50000000!");
         }
 
         let amount = parseFloat(amountToValidate).toFixed(8);
@@ -772,8 +772,8 @@ function doTip(message, tipper, words, bot) {
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
             return message.reply("I don't know how to tip that many PWRs!");
-        } else if (amountToValidate === "Over10M") {
-            return message.reply("what? Over 10000000!");
+        } else if (amountToValidate === "Over50M") {
+            return message.reply("what? Over 50000000!");
         }
 
         let amount = parseFloat(amountToValidate.toFixed(8));
