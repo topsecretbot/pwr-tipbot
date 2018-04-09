@@ -32,6 +32,7 @@ exports.tip = {
     usage: "<subcommand>",
 
     description: "Here is the commands you can use:\n"
+    + "**Use at your own risk. The developer of this bot assumes no responsibility for any lost coins**"
     + "**!tip help** : display this message.\n"
     + "**!tip deposit** : get an address to top up your balance.\n"
     + "**!tip balance** : get your balance.\n"
@@ -109,6 +110,7 @@ function doHelp(message) {
     }
 
     message.author.send(
+        "**Use at your own risk. The developer of this bot assumes no responsibility for any lost coins**"
         "Here are the commands you can use:\n"
         + "**!tip help** : display this message.\n\n"
         + "**!tip deposit** : get an address to top up your balance. `Warning:` Mining directly into your `tip-bot-address` is prohibited (You won't be able to use these PWRs)! And no support for retrieving these PWRs will be provided!\n\n"
