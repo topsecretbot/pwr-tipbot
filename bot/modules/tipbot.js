@@ -521,7 +521,7 @@ function doOpenTip(message, receiver, words, bot) {
 function isChannelTipAlreadyExist(tip, message) {
     let now = new Date();
     // in minutes
-    let allowedTimeBetweenChannelTips = 20;
+    let allowedTimeBetweenChannelTips = 5;
     let diffMs;
     let diffMins;
     let type = tip.luck ? "LUCK" : "EACH";
