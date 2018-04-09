@@ -117,7 +117,7 @@ function doHelp(message) {
         + "**!tip luck <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *randomly* (one tip is bigger, you can win jackpot) between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 20 people. Your packet will be active for next 20 minutes, then can be overwritten. Maximum tip has to be ≤ 10000000 PWR.\n\n"
         + "**!tip each <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *equally* between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 20 people. Your packet will be active for next 20 minutes, then can be overwritten. Maximum tip has to be ≤ 1 PWR.\n\n"
         + "**!tip <@user> <amount> [message]** : tip <@user> <amount> PWRs.\n\n"
-        + "**!tip <@user> random [message]** : tip <@user> random PWRs where random is <0.0, 0.1)\n\n"
+        //+ "**!tip <@user> random [message]** : tip <@user> random PWRs where random is <0.0, 0.1)\n\n"
       //  + "**!tip <@user> <amount><fiat_currency_ticker> [message]** : tip <@user> PWRs in fiat equivalent. Example: **!tip @freakcoder 10000usd**. You can use <fiat_currency_ticker> with every command. Where <fiat_currency_ticker> can be: USD, EUR, RUB, JPY, GBP, AUD, BRL, CAD, CHF, CLP, CNY, CZK, DKK, HKD, IDR, ILS, INR, KRW, MXN, MYR, NOK, NZD, PHP, PKR, PLN, SEK, SGD, THB, TRY, TWD, ZAR\n"
     );
 }
