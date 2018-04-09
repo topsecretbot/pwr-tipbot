@@ -374,7 +374,6 @@ function doWithdraw(message, tipper, words) {
             return message.reply("this does not appear to be a valid address");
         }
 
-        // power.cmd("z_sendmany", tipper.address, '[{"amount": ' + spent.toString() + ', "address": "' + destinationAddress + '"}]',
         power.cmd("sendtoaddress", destinationAddress, amount, "", "", true,
             function (err, txId) {
                 if (err) {
