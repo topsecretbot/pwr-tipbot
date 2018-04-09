@@ -845,5 +845,5 @@ function sendPwr(tipper, receiver, amount) {
  * @param txId is transaction id
  */
 function txLink(txId) {
-    return "<https://explorer.pwrsystem.io/tx/" + txId + ">";
+    return "<https://blockexplorer.pwr-coin.com/tx/" + txId + ">";
 }
