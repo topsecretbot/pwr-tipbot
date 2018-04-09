@@ -369,14 +369,8 @@ function doWithdraw(message, tipper, words) {
 
         const destinationAddress = words[3];
 
-        //let prefix1 = "5";
-        //let prefix2 = "6";
-        //if (config_bot.testnet) {
-        //    prefix = "zt";
-        //}
-
        //  only 5 or 6 addresses are supported!
-        if (destinationAddress.toLowerCase().substring(0, 2) !== "5" || destinationAddress.toLowerCase().substring(0, 2) !== "6" ) {
+        if (destinationAddress.substring(0, 2) !== "5" || destinationAddress.substring(0, 2) !== "6" ) {
             return message.reply("this does not appear to be a valid address");
         }
 
