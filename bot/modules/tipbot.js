@@ -607,7 +607,7 @@ function createTipLuck(message, tipper, words) {
         if (amountToValidate === null) {
             return message.reply("I don't know how to tip that many PWRs!");
         } else if (amountToValidate === "Over") {
-            return message.reply("what? Over 10000000!");
+            return message.reply("what? Over 50000000!");
         }
 
         let amount = parseFloat(amountToValidate).toFixed(8);
