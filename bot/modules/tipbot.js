@@ -612,7 +612,7 @@ function createTipLuck(message, tipper, words) {
 
         let amount = parseFloat(amountToValidate).toFixed(8);
         let n = parseFloat(words[3]).toFixed(8);
-        if (isNaN(n) || n <= 1) {
+        if (isNaN(n) || n <= 1.1) {
             return message.reply("I don't know how to tip that many people!");
         } else if (n < amount) {
             return message.reply("Your amount is less than the number of people");
