@@ -325,6 +325,8 @@ function getValidatedAmount(amount, balance) {
     // Invalid amount
     if (amount > 50000000) {
         return "Over";
+    } else if (amount < 1){
+        return "Under";
     }
     return null
 }
@@ -336,7 +338,7 @@ function getValidatedAmount(amount, balance) {
 function getValidatedMaxAmount(amount) {
     let maxTipPwrAmount = 50000000;
     let minTipPwrAmount = 1;
-    if (amount <= maxTipPwrAmount || amount >= minTipPwrAmount) {
+    if (amount <= maxTipPwrAmount && amount >= minTipPwrAmount) {
         return amount
     } else {
         return null
@@ -607,7 +609,7 @@ function createTipLuck(message, tipper, words) {
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
             return message.reply("I don't know how to tip that many PWRs!");
-        } else if (amountToValidate === "Over") {
+        } else if (amountToValidate === "Over" || amountToValidate === "Under") {
             return message.reply("what? Over 50000000!");
         }
 
@@ -696,7 +698,7 @@ function createTipEach(message, tipper, words) {
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
             return message.reply("I don't know how to tip that many PWRs!");
-        } else if (amountToValidate === "Over") {
+        } else if (amountToValidate === "Over" || amountToValidate === "Under") {
             return message.reply("what? Over 50000000!");
         }
 
