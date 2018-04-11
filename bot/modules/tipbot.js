@@ -615,7 +615,7 @@ function createTipLuck(message, tipper, words) {
         if (isNaN(n) || n <= 0) {
             return message.reply("I don't know how to tip that many people!");
         } else if (n < amount) {
-            return message.rply("Your amount is less than the number of people");
+            return message.reply("Your amount is less than the number of people");
         } else if (n > 1000) {
             return message.reply("1000 people is the maximum per packet!");
         }
