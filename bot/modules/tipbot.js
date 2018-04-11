@@ -608,17 +608,19 @@ function createTipLuck(message, tipper, words) {
         let amountToValidate = getValidatedAmount(words[2], balance);
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
-            return message.reply("I don't know how to tip that many PWRs!");
-        } else if (amountToValidate === "Over" || amountToValidate === "Under") {
-            return message.reply("what? Over 50000000!");
+            return message.reply("I think you forgot to tip some PWRs!");
+        } else if (amountToValidate === "Over") {
+            return message.reply("Um....you are WAY to high!");
+        } else if (amountToValidate === "Under") {
+            return message.reply("Wow! You are one cheap person!");
         }
 
         let amount = parseFloat(amountToValidate).toFixed(8);
         let n = parseFloat(words[3]).toFixed(8);
-        if (isNaN(n) || n <= 0) {
+        if (isNaN(n) || n <= 1) {
             return message.reply("I don't know how to tip that many people!");
-        } else if (n < amount) {
-            return message.reply("Your amount is less than the number of people");
+        } else if (amount < n) {
+            return message.reply("Seriously?");
         } else if (n > 1000) {
             return message.reply("1000 people is the maximum per packet!");
         }
@@ -698,8 +700,10 @@ function createTipEach(message, tipper, words) {
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
             return message.reply("I don't know how to tip that many PWRs!");
-        } else if (amountToValidate === "Over" || amountToValidate === "Under") {
-            return message.reply("what? Over 50000000!");
+        } else if (amountToValidate === "Over") {
+            return message.reply("Um....you are WAY to high!");
+        } else if (amountToValidate === "Under") {
+            return message.reply("Wow! You are one cheap person!");
         }
 
         let amount = parseFloat(amountToValidate).toFixed(8);
@@ -710,8 +714,8 @@ function createTipEach(message, tipper, words) {
         let n = parseFloat(words[3]).toFixed(8);
         if (isNaN(n) || n <= 0) {
             return message.reply("I dont know how to tip that many people!");
-        } else if (n < amount) {
-            return message.reply("Your amount is less than the number of people");
+        } else if (amount < n) {
+            return message.reply("Seriously?");
         } else if (n > 1000) {
             return message.reply("1000 people is the maximum per packet!");
         }
