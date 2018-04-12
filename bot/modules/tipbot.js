@@ -148,7 +148,7 @@ function getUser(id, cb) {
             cb(null, doc);
         } else {
             // New User
-            power.getNewAddress(function (err, address) {
+            power.getAddressesByAccount(function (err, address) {
                 if (err) {
                     return cb(err, null);
                 }
@@ -221,7 +221,7 @@ function doDeposit(message, tipper) {
                      );
     } else {
         // tipper has no deposit address yet, generate a new one
-        power.getNewAddress(function (err, address) {
+        power.getAddressesByAccount(function (err, address) {
             if (err) {
                 return message.reply("Error getting deposit address!");
             }
@@ -381,7 +381,7 @@ function doWithdraw(message, tipper, words) {
        //     return message.reply("this does not appear to be a valid address");
        // }
 
-        power.cmd("sendtoaddress", destinationAddress, amount, "", "",
+        power.cmd("sendFrom", destinationAddress, amount, "", "",
             function (err, txId) {
                 if (err) {
                     message.reply(err.message);
