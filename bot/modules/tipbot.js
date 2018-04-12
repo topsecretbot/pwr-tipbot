@@ -548,7 +548,7 @@ function isChannelTipAlreadyExist(tip, message) {
             if (diffMins > allowedTimeBetweenChannelTips) {
                 // tip already exist, but it expire -> replace it
                 tipAllChannels[i] = tip;
-                message.reply("A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
+                message.reply(" @everyone A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
                 return 0
             } else {
                 // tip already exist and is still valid
@@ -559,7 +559,7 @@ function isChannelTipAlreadyExist(tip, message) {
     }
     // tip doesnt exist in this channel -> create new
     tipAllChannels.push(tip);
-    message.reply("A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
+    message.reply(" @everyone A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
     return 2
 }
 
