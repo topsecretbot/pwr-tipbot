@@ -381,7 +381,7 @@ function doWithdraw(message, tipper, words) {
        //     return message.reply("this does not appear to be a valid address");
        // }
 
-        power.cmd("sendtoaddress", destinationAddress, amount, "", "", true,
+        power.cmd("sendtoaddress", destinationAddress, amount, "", "",
             function (err, txId) {
                 if (err) {
                     message.reply(err.message);
