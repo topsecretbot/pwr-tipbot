@@ -367,7 +367,7 @@ function doWithdraw(message, tipper, words) {
 
         let amount = getValidatedAmount(words[2], balance);
         if (amount === null) {
-            return message.reply("I don't know how to withdraw that many PWRs!");
+            return message.reply("Seriously? You don't have that many PWRs!");
         } else if (amount === "Over") {
             return message.reply("what? Over 50000000!");
         }
