@@ -52,7 +52,7 @@ function checkMessageForCommand(msg, isEdit) {
                 suffix = msg.content.substring(bot.user.mention().length + cmdTxt.length + config.prefix.length + 1);
             } catch (e) {
                 // no command
-                msg.channel.send("Yes, how can I help you?");
+                msg.channel.send("What now?");
                 return;
             }
         }
@@ -91,7 +91,7 @@ function checkMessageForCommand(msg, isEdit) {
             return;
         } else if ((msg.author !== bot.user) && msg.isMentioned(bot.user)) {
             // using a mention here can lead to looping
-            msg.channel.send("Yes, how can I help you?");
+            msg.channel.send("What now?");
         } else {
             // regular msg that has probably nothing to do with the bot ;)
         }
