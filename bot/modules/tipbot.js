@@ -381,7 +381,7 @@ function doWithdraw(message, tipper, words) {
        //     return message.reply("this does not appear to be a valid address");
        // }
 
-        power.cmd("sendFrom", destinationAddress, amount, "", "",
+        power.cmd("sendFrom", tipper.address, destinationAddress, amount, "minconf=10" , "", "",
             function (err, txId) {
                 if (err) {
                     message.reply(err.message);
