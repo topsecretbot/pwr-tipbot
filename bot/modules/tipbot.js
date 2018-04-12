@@ -116,8 +116,8 @@ function doHelp(message) {
         + "**!tip deposit** : get an address to top up your balance. `Warning:` Mining directly into your `tip-bot-address` is prohibited (You won't be able to use these PWRs)! And no support for retrieving these PWRs will be provided!\n\n"
         + "**!tip balance** : get your balance.\n\n"
         + "**!tip withdraw <amount> <address>** : withdraw <amount> PWRs from your balance to your <address>.\n\n"
-        + "**!tip luck <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *randomly* (one tip is bigger, you can win jackpot) between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 1000 people. Your packet will be active for next 5 minutes, then can be overwritten. Maximum tip has to be ≤ 50000000 PWR.\n\n"
-        + "**!tip each <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *equally* between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 1000 people. Your packet will be active for next 5 minutes, then can be overwritten. Maximum tip has to be ≤ 50000000 PWR.\n\n"
+        + "**!tip luck <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *randomly* (one tip is bigger, you can win jackpot) between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 100 people. Your packet will be active for next 5 minutes, then can be overwritten. Maximum tip has to be ≤ 50000000 PWR.\n\n"
+        + "**!tip each <amount> <n> [message]** : drop a packet in a channel, the <amount> is divided *equally* between the <n> first people to open the packet. Leave an optionnal [message] with the packet. Only one packet per channel is allowed. Maximum is 100 people. Your packet will be active for next 5 minutes, then can be overwritten. Maximum tip has to be ≤ 50000000 PWR.\n\n"
         + "**!tip <@user> <amount> [message]** : tip <@user> <amount> PWRs.\n\n"
         //+ "**!tip <@user> random [message]** : tip <@user> random PWRs where random is <0.0, 0.1)\n\n"
       //  + "**!tip <@user> <amount><fiat_currency_ticker> [message]** : tip <@user> PWRs in fiat equivalent. Example: **!tip @freakcoder 10000usd**. You can use <fiat_currency_ticker> with every command. Where <fiat_currency_ticker> can be: USD, EUR, RUB, JPY, GBP, AUD, BRL, CAD, CHF, CLP, CNY, CZK, DKK, HKD, IDR, ILS, INR, KRW, MXN, MYR, NOK, NZD, PHP, PKR, PLN, SEK, SGD, THB, TRY, TWD, ZAR\n"
@@ -193,7 +193,7 @@ function getBalance(tipper, cb) {
  */
 function doBalance(message, tipper) {
     if (message.channel.type !== "dm") {
-        return message.reply("send me this command in direct message!").then(message => message.delete(10000));
+        return message.reply("You want people seeing your balance? Send this *$%@ in a DM!").then(message => message.delete(10000));
     }
 
     getBalance(tipper, function (err, balance) {
@@ -211,7 +211,7 @@ function doBalance(message, tipper) {
  */
 function doDeposit(message, tipper) {
     if (message.channel.type !== "dm") {
-        return message.reply("send me this command in direct message!").then(message => message.delete(10000));
+        return message.reply("If you want to send me money, I will tell you where to send it privately....in a DM").then(message => message.delete(10000));
     }
 
     if (tipper.address) {
@@ -352,7 +352,7 @@ function getValidatedMaxAmount(amount) {
  */
 function doWithdraw(message, tipper, words) {
     if (message.channel.type !== "dm") {
-        return message.reply("send me this command in direct message!").then(message => message.delete(10000));
+        return message.reply("Stop spamming and send me this in a DM!").then(message => message.delete(10000));
     }
 
     //  wrong command syntax
@@ -369,7 +369,7 @@ function doWithdraw(message, tipper, words) {
         if (amount === null) {
             return message.reply("Seriously? You don't have that many PWRs!");
         } else if (amount === "Over") {
-            return message.reply("what? Over 50000000!");
+            return message.reply("WOW? Over 50000000! Cut that into pieces, I can't handle that much PWR at once.");
         }
 
         const destinationAddress = words[3];
@@ -396,7 +396,7 @@ function doWithdraw(message, tipper, words) {
                             }
                         }
                     );
-                    return message.reply("you withdrew **" + amount.toString() + " PWR** (- fee) to **" + destinationAddress + "** (" + txLink(txId) + ")!");
+                    return message.reply("You cleaned me out of  **" + amount.toString() + " PWR** (- fee) to **" + destinationAddress + "** (" + txLink(txId) + ")!");
                 }
             }
         );
@@ -420,7 +420,7 @@ function retreiveChannelTipObjIdx(set, channel_id) {
  */
 function doOpenTip(message, receiver, words, bot) {
     if (message.channel.type === "dm") {
-        return message.reply("you can't send me this command in direct message!");
+        return message.reply("Don't talk to me about this here. Go back to the chat room!");
     }
 
     // wrong command syntax
@@ -430,7 +430,7 @@ function doOpenTip(message, receiver, words, bot) {
 
     let idx = retreiveChannelTipObjIdx(tipAllChannels, message.channel.id);
     if (idx === null) {
-        return message.reply("sorry here isn't any tip for `open`").then(message => message.delete(10000));
+        return message.reply("Too slow! Nothing left to `open`").then(message => message.delete(10000));
     }
     if (config_bot.debug) {
         console.log("open idx", idx);
@@ -466,12 +466,12 @@ function doOpenTip(message, receiver, words, bot) {
         }
 
         if ((amount <= 0) || (amount > balance)) {
-            return message.reply("I don't know how to tip that many PWRs!");
+            return message.reply("Um....I don't know how to tip that many PWRs!");
         }
 
         // prevent user from opening your own tip
         if (tipper.discordID === message.author.id) {
-            return message.reply("you can't `open` your own tip ...").then(message => message.delete(10000));
+            return message.reply("WOW! Stealing from yourself? You can't `open` your own tip ...").then(message => message.delete(10000));
         }
 
         getUser(receiver.id, function (err, rec) {
@@ -485,7 +485,7 @@ function doOpenTip(message, receiver, words, bot) {
 
             for (let i = 0; i < tipAllChannels[idx].used_user.length; i++) {
                 if (tipAllChannels[idx].used_user[i].id === message.author.id) {
-                    return message.reply("you can't `open` this for the second time ...").then(message => message.delete(10000));
+                    return message.reply("I don't like cheaters so you can't `open` this for the second time ...").then(message => message.delete(10000));
                 }
             }
 
@@ -512,7 +512,7 @@ function doOpenTip(message, receiver, words, bot) {
             if (tipAllChannels[idx].n === tipAllChannels[idx].n_used) {
                 tipAllChannels.splice(idx, 1);
 
-                return message.reply("that was the last piece! Package from <@" + tipper.discordID + "> is now empty, thank you!");
+                return message.reply("@everyone else is too slow. Package from <@" + tipper.discordID + "> is now empty, thank you!");
             }
         });
     });
@@ -546,18 +546,18 @@ function isChannelTipAlreadyExist(tip, message) {
             if (diffMins > allowedTimeBetweenChannelTips) {
                 // tip already exist, but it expire -> replace it
                 tipAllChannels[i] = tip;
-                message.reply("new tip `" + type + "` has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
+                message.reply("A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
                 return 0
             } else {
                 // tip already exist and is still valid
-                message.reply("can't create new tip because previous tip is in progress!\n**" + tipAllChannels[i].n_used + "/" + tipAllChannels[i].n + " opened**\n**" + (5 - diffMins) + " minutes left**" );
+                message.reply("Wait your turn, there is a previous tip is in progress!\n**" + tipAllChannels[i].n_used + "/" + tipAllChannels[i].n + " opened**\n**" + (5 - diffMins) + " minutes left**" );
                 return 1
             }
         }
     }
     // tip doesnt exist in this channel -> create new
     tipAllChannels.push(tip);
-    message.reply("new tip `" + type + "` has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
+    message.reply("A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
     return 2
 }
 
@@ -592,7 +592,7 @@ function shuffle(array) {
  */
 function createTipLuck(message, tipper, words) {
     if (message.channel.type === "dm") {
-        return message.reply("you can't send me this command in direct message!");
+        return message.reply("Go back to the chat room to do this!");
     }
 
     // wrong command syntax
@@ -602,7 +602,7 @@ function createTipLuck(message, tipper, words) {
 
     getBalance(tipper, function (err, balance) {
         if (err) {
-            return message.reply("error getting balance");
+            return message.reply("I have no idea why, but I can't seem to get your balance");
         }
 
         let amountToValidate = getValidatedAmount(words[2], balance);
@@ -621,8 +621,8 @@ function createTipLuck(message, tipper, words) {
             return message.reply("I don't know how to tip that many people!");
         } else if (amount < 1) {
             return message.reply("Seriously?");
-        } else if (n > 1000) {
-            return message.reply("1000 people is the maximum per packet!");
+        } else if (n > 100) {
+            return message.reply("100 people is the maximum per packet!");
         }
         let quotient = (amount / n).toFixed(8);
 
@@ -699,7 +699,7 @@ function createTipEach(message, tipper, words) {
         let amountToValidate = getValidatedAmount(words[2], balance);
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
-            return message.reply("I don't know how to tip that many PWRs!");
+            return message.reply("I think you forgot something.");
         } else if (amountToValidate === "Over") {
             return message.reply("Um....you are WAY to high!");
         } else if (amountToValidate === "Under") {
@@ -716,8 +716,8 @@ function createTipEach(message, tipper, words) {
             return message.reply("I dont know how to tip that many people!");
         } else if (amount < 1) {
             return message.reply("Seriously?");
-        } else if (n > 1000) {
-            return message.reply("1000 people is the maximum per packet!");
+        } else if (n > 100) {
+            return message.reply("100 people is the maximum per packet!");
         }
 
         let quotient = (amount / n).toFixed(8);
@@ -782,9 +782,9 @@ function doTip(message, tipper, words, bot) {
         let amountToValidate = getValidatedAmount(words[2], balance);
         amountToValidate = getValidatedMaxAmount(amountToValidate);
         if (amountToValidate === null) {
-            return message.reply("I don't know how to tip that many PWRs!");
+            return message.reply("I think you forgot something.");
         } else if (amountToValidate === "Over") {
-            return message.reply("what? Over 50000000!");
+            return message.reply("WHALE!!! Try a lower amount you showoff!");
         }
 
         let amount = parseFloat(amountToValidate.toFixed(8));
@@ -802,7 +802,7 @@ function doTip(message, tipper, words, bot) {
                 return message.reply("I cant't find a user in your tip ...");
             } else {
                 if (tipper.discordID === target.id) {
-                    return message.reply("you can't tip yourself ...");
+                    return message.reply("Really!!?? I mean....seriously...");
                 }
 
                 getUser(target.id, function (err, receiver) {
