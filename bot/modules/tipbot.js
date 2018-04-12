@@ -148,7 +148,7 @@ function getUser(id, cb) {
             cb(null, doc);
         } else {
             // New User
-            power.getAddressesByAccount(function (err, address) {
+            power.getNewAddress(function (err, address) {
                 if (err) {
                     return cb(err, null);
                 }
@@ -216,12 +216,12 @@ function doDeposit(message, tipper) {
 
     if (tipper.address) {
         // tipper already has a deposit address
-        message.reply("Your deposit address is: " + tipper.address
+        message.reply("Your deposit address is: " + tipper.address\n
                      + "https://blockexplorer.pwr-coin.com/qr/" + tipper.address
                      );
     } else {
         // tipper has no deposit address yet, generate a new one
-        power.getAddressesByAccount(function (err, address) {
+        power.getNewAddress(function (err, address) {
             if (err) {
                 return message.reply("Error getting deposit address!");
             }
@@ -381,7 +381,7 @@ function doWithdraw(message, tipper, words) {
        //     return message.reply("this does not appear to be a valid address");
        // }
 
-        power.cmd("sendFrom", tipper.address, destinationAddress, amount, "minconf=10" , "", "",
+        power.cmd("sendtoaddress", destinationAddress, amount, "", "", true,
             function (err, txId) {
                 if (err) {
                     message.reply(err.message);
