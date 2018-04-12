@@ -216,7 +216,7 @@ function doDeposit(message, tipper) {
 
     if (tipper.address) {
         // tipper already has a deposit address
-        message.reply("Your deposit address is: " + tipper.address\n
+        message.reply("Your deposit address is: " + tipper.address
                      + "https://blockexplorer.pwr-coin.com/qr/" + tipper.address
                      );
     } else {
@@ -624,7 +624,7 @@ function createTipLuck(message, tipper, words) {
         } else if (amount < 1) {
             return message.reply("Seriously?");
         } else if (n > 100) {
-            return message.reply("100 people is the maximum per packet!");
+            return message.reply("100 people is the maximum per drop!");
         }
         let quotient = (amount / n).toFixed(8);
 
@@ -685,7 +685,7 @@ function createTipLuck(message, tipper, words) {
  */
 function createTipEach(message, tipper, words) {
     if (message.channel.type === "dm") {
-        return message.reply("you can't send me this command in direct message!");
+        return message.reply("Try going back to the chat room where you should be!");
     }
 
     // wrong command syntax
