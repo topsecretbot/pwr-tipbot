@@ -216,7 +216,7 @@ function doDeposit(message, tipper) {
 
     if (tipper.address) {
         // tipper already has a deposit address
-        message.reply("Your deposit address is: " + tipper.address
+        message.reply("Your deposit address is: " + tipper.address.\n
                      + "https://blockexplorer.pwr-coin.com/qr/" + tipper.address
                      );
     } else {
