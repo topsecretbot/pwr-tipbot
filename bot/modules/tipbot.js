@@ -560,7 +560,7 @@ function isChannelTipAlreadyExist(tip, message) {
     // tip doesnt exist in this channel -> create new
     tipAllChannels.push(tip);
     message.reply(" A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
-    bot.setActivity('Time Left ' + diffMs);
+    config_bot.setActivity('Time Left ' + diffMs);
     return 2
 }
 
