@@ -6,7 +6,6 @@ const bitcoin = require("bitcoin");
 const power = new bitcoin.Client(config.get("power"));
 const mongoose = require("mongoose");
 const syncRequest = require("sync-request");
-const Discord = require("discord.js");
 
 mongoose.Promise = global.Promise;
 const mongodb = config.get("mongodb");
@@ -561,7 +560,6 @@ function isChannelTipAlreadyExist(tip, message) {
     // tip doesnt exist in this channel -> create new
     tipAllChannels.push(tip);
     message.reply(" A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
-    config_bot.user.setStatus('idle').then(console.log).catch(console.error);
     return 2
 }
 
