@@ -560,9 +560,7 @@ function isChannelTipAlreadyExist(tip, message) {
     // tip doesnt exist in this channel -> create new
     tipAllChannels.push(tip);
     message.reply(" A new PWR `" + type + "` package has been created (" + tip.amount_total.toString() + " PWR)! Claim it with command `!tip open`");
-    config_bot.setActivity('YouTube', { type: 'WATCHING' })
-        .then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
-        .catch(console.error);
+    config_bot.user.setActivity('YouTube', { type: 'WATCHING' });
     return 2
 }
 
