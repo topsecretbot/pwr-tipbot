@@ -543,6 +543,7 @@ function isChannelTipAlreadyExist(tip, message) {
             if (config_bot.debug) {
                 console.log("isChannelTipAlreadyExist diffMs: ", diffMs);
                 console.log("isChannelTipAlreadyExist diffMins: ", diffMins);
+                bot.setActivity('Time Left' + diffMs);
             }
 
             if (diffMins > allowedTimeBetweenChannelTips) {
