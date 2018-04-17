@@ -6,6 +6,7 @@ const bitcoin = require("bitcoin");
 const power = new bitcoin.Client(config.get("power"));
 const mongoose = require("mongoose");
 const syncRequest = require("sync-request");
+const Discord = require("discord.js");
 
 mongoose.Promise = global.Promise;
 const mongodb = config.get("mongodb");
